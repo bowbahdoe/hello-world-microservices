@@ -44,11 +44,40 @@ namespace :hello_world do
   end
 end
 
-task :build => ["hello_world:build"] do
+namespace :goodnight_world do
+  task :build => ["goodnight_world:clean"] do
+    Dir.chdir('goodnight_world/') do
+      sh "zip goodnight_world.zip goodnight_world.rb"
+    end
+  end
+
+  task :clean do
+    Dir.chdir('goodnight_world/') do
+      File.delete_if_exists "goodnight_world.zip"
+    end
+  end
+
+  task :test do
+    Dir.chdir('goodnight_world/') do
+      sh "ruby test_goodnight_world.rb"
+    end
+  end
 end
 
-task :clean => ["hello_world:clean"] do
+task :build => [
+  "hello_world:build",
+  "goodnight_world:build"
+  ] do
 end
 
-task :test => ["hello_world:test"] do
+task :clean => [
+  "hello_world:clean",
+  "goodnight_world:clean"
+  ] do
+end
+
+task :test => [
+  "hello_world:test",
+  "goodnight_world:test",
+  ] do
 end
