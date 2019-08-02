@@ -84,7 +84,7 @@ resource "aws_lambda_function" "goodnight_world_lambda" {
   s3_key         = "${aws_s3_bucket_object.goodnight_world_code.id}"
   function_name = "goodnight_world"
   role          = "${aws_iam_role.hello_world_iam.arn}"
-  handler       = "goodnight_world.handler"
+  handler       = "goodnight_world.GoodnightWorld.handler"
 
   source_code_hash = "${aws_s3_bucket_object.goodnight_world_code.etag}"
 
