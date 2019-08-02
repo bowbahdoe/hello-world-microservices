@@ -1,0 +1,6 @@
+*/build/*
+*.tfplan
+.terraform/
+__pycache__/
+*.tfstate*
+*.zip
